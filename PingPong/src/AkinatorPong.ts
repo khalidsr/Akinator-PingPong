@@ -6,14 +6,14 @@ export function ping_pong(canvas : any,leftCallback:any , rightCallback:any) {
         let start:any = document.getElementById('ButtonStart');
         let switchMusic:any = document.getElementById('music_switch');
         let switchSound:any = document.getElementById('sound_switch');
-        let ExitGame:any = document.getElementById('ExitGame');
-      
+        // let PauseGame:any = document.getElementById('buttonPause');
+        // let RestartGame:any = document.getElementById('buttonReset');
          
 
         let MusicValue:boolean = true;
         let SoundValue:boolean = true;
-        let ExitValue:boolean = false;
-        
+        let PauseValue:boolean = true;
+        let RestartValue:boolean = false;
         let play_start = 0;
 
         start.addEventListener('click',()=> {
@@ -29,12 +29,16 @@ export function ping_pong(canvas : any,leftCallback:any , rightCallback:any) {
             SoundValue = switchSound.checked;
             console.log(`||||||||| switch |||||||||${SoundValue}`)
         });
-        ExitGame.addEventListener('click', () => {
-            ExitValue = ExitGame.id;
+        // PauseGame.addEventListener('click', () => {
+        //     PauseValue = PauseGame.id;
+        //     console.log(`||||||||| Pause |||||||||${PauseValue}`)
+        // });
 
-            console.log(`||||||||| EXIT |||||||||${ExitValue}`)
-        });
+        // RestartGame.addEventListener('click', () => {
+        //     RestartValue = RestartGame.id;
 
+        //     console.log(`||||||||| reset |||||||||${RestartValue}`)
+        // });
         let  img = new Image();
         let img_win = new Image();
          let img_lose = new Image();
@@ -386,13 +390,12 @@ export function ping_pong(canvas : any,leftCallback:any , rightCallback:any) {
         
         function render() 
         {
-            
-            if(ExitValue)
+            if (RestartValue)
             {
-                MusicValue = false;
-               SoundValue = false;
-               sc.left_score = 5;
+                sc.left_score = 0;
+                sc.score_right = 0;
             }
+
             if(MusicValue)
                 music.play();
             else
@@ -401,8 +404,11 @@ export function ping_pong(canvas : any,leftCallback:any , rightCallback:any) {
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             if(sc.left_score < 5 && sc.right_score < 5)
             {
-                p.start()
-                bl.draw();
+                if(!PauseGame)
+                {
+                    p.start()
+                    bl.draw();
+                }
             }
             else if(sc.left_score == 5)
                 ctx.drawImage(img_lose, 0, 0, canvas.width, canvas.height);
@@ -426,7 +432,6 @@ export function ping_pong(canvas : any,leftCallback:any , rightCallback:any) {
             msPrev = msNow - excessTime
             if(play_start)
                 render()
-            
             frames++
         }
     }

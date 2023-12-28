@@ -2,22 +2,14 @@ import { useEffect, useRef,useState } from 'react'
 import './akinator.css'
 import Switch from '@mui/material/Switch';
 import { ping_pong} from './AkinatorPong'
-import { FaPlay } from "react-icons/fa";
-import { FaPause } from "react-icons/fa6";
-import { GrPowerReset } from "react-icons/gr";
 
 export default function Akinator()
 {
 
   const [musicOn, setMusicOn] = useState(true);
   const [soundOn, setSoundOn] = useState(true);
-  const [pause, setPause] = useState(true);
   const flag = useRef(false)
   const canvas = useRef(null)
-  const handleTogglePause = () => {
-    setPause(!pause);
-    // Add any other logic you want to perform on pause/play toggle
-  };
   
   const [leftballs, setLeftBalls] = useState(['grey', 'grey', 'grey', 'grey', 'grey']);
   const [rightballs, setRightBalls] = useState(['grey', 'grey', 'grey', 'grey', 'grey']);
@@ -27,10 +19,10 @@ export default function Akinator()
     if (canvas.current && flag.current === false)
     {
       ping_pong(canvas.current,(left:any) => {
-        const updatedBallColors = leftballs.map((color, index) => (index < left ? 'purple' : 'gray'));
+        const updatedBallColors = leftballs.map((_, index) => (index < left ? 'purple' : 'gray'));
         setLeftBalls(updatedBallColors);
       },(right:any)=>{
-          const updatedBallColors = rightballs.map((color, index) => (4 - index < right ? 'purple' : 'gray'));
+          const updatedBallColors = rightballs.map((_, index) => (4 - index < right ? 'purple' : 'gray'));
           setRightBalls(updatedBallColors);
         })
       flag.current = true 
@@ -82,23 +74,16 @@ export default function Akinator()
           <Switch id= "sound_switch" defaultChecked  onChange={() => {setSoundOn(!soundOn)}} />&nbsp;
             <span id='state' > {soundOn ? 'On' : 'Off'} </span>
         </div>
-      
+
     </div>
-      <button className='buttonPause' onClick={handleTogglePause}>
-        {pause ? <FaPlay /> : <FaPause />}
-        <strong className ="Pause"> {!pause ? 'Pause' : 'Play'} </strong>
-      </button>
-      <button className='buttonReset'>
-      <GrPowerReset/>
-        <strong className ="reset"> Reset </strong>
-      </button>
 
     <canvas ref={canvas} id = "canvas1"  height = "600" width = "1000" > </canvas>
       <div id="start">
         <button id="ButtonStart" className='ButtonStart'>
-        <strong className='startplus'>Start</strong>
+        <strong className='startplus'> Start </strong>
         <img className='Iconpaddles' src="/src/assets/img/IconPaddles.png"></img>
         </button>
+        
       </div>
   
   </div>

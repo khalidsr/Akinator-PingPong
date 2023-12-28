@@ -1,16 +1,19 @@
-version: '3.8'
 
-networks:
-  hadnetwork:
-services:
-  
-  frontend:
-    build:
-      context: ./PingPong
-      dockerfile: Dockerfile
-    container_name: Akinator
-    ports:
-      - 5173:5173
-    restart: always
-    networks:
-      - hadnetwork
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+RUN  npm install @mui/material @emotion/react
+
+COPY . .
+
+EXPOSE 5173
+
+RUN npm run build
+
+CMD [ "npm", "run", "dev" ]
+
+

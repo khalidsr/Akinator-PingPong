@@ -35,12 +35,12 @@ export default function Akinator()
     <div >
   
     <div className= "vs">
-        <img src="src/assets/vs.png"/>
+        <img src="vs.png"/>
      
     </div>
   
     <div id="profile1"> 
-          <img className='profile1Img' src='src/assets/akinat.png'></img>
+          <img className='profile1Img' src="akinat.png"></img>
           <strong className='profile1id'>Akinator</strong>
           
           <div className="BallScore1">
@@ -50,7 +50,7 @@ export default function Akinator()
         </div>
     </div>
     <div id="profile2">
-          <img className='profile2Img' src='src/assets/jenny.png'></img>
+          <img className='profile2Img' src='jenny.png'></img>
           <strong className='profile2id'>Gennie</strong>
           
           <div className="BallScore2">
@@ -81,7 +81,7 @@ export default function Akinator()
       <div id="start">
         <button id="ButtonStart" className='ButtonStart'>
         <strong className='startplus'> Start </strong>
-        <img className='Iconpaddles' src="src/assets/IconPaddles.png"></img>
+        <img className='Iconpaddles' src="IconPaddles.png"></img>
         </button>
         
       </div>

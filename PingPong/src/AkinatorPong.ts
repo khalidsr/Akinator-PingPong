@@ -35,14 +35,14 @@ export function ping_pong(canvas : any,leftCallback:any , rightCallback:any) {
         let ball_sound = new Audio();
         let music = new Audio();
 
-        img_lose.src = "src/assets/lose.jpg";
-        img_win.src = "src/assets/win.jpg";
+        img_lose.src = "lose.jpg";
+        img_win.src = "win.jpg";
 
-        ball_sound.src = "src/assets/beeep.ogg";
-        paddle_sound.src = "src/assets/Pop.ogg" 
-        music.src = "src/assets/Arabesque.mp3";
+        ball_sound.src = "beeep.ogg";
+        paddle_sound.src = "Pop.ogg" 
+        music.src = "Arabesque.mp3";
         
-        img.src = "src/assets/arabec.png";
+        img.src = "arabec.png";
         let speed_paddle:number = 20;
         window.addEventListener('keydown', handlePlayerKeyPress);
         
